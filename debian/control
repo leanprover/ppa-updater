@@ -1,0 +1,11 @@
+Source: lean
+Section: devel
+Priority: optional
+Maintainer: Leonardo de Moura <leodemoura@microsoft.com>
+Build-Depends: g++-4.8, cmake, build-essential, libgmp-dev, libmpfr-dev, liblua5.2-dev, python, ninja-build
+Homepage: http://leanprover.github.io
+
+Package: lean
+Architecture: any
+Depends: libstdc++-4.8-dev, libgmp-dev, libmpfr-dev, liblua5.2-dev, python
+Description: Lean Theorem Prover
