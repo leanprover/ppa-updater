@@ -16,7 +16,7 @@ We assume that you have Ubuntu 14.04 LTS system. You need the
 following packages:
 
 ```bash
-sudo apt-get install git pbuilder build-essential ubuntu-dev-tool devscripts
+sudo apt-get install git pbuilder build-essential ubuntu-dev-tools devscripts
 ```
 
 Also we assume that you have created your GPG/PGP key and published to
