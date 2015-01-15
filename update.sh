@@ -14,7 +14,7 @@ AUTHOR_NAME="Leonardo de Moura"
 AUTHOR_EMAIL="leonardo@microsoft.com"
 
 if [ ! -d $REPO ] ; then
-    git clone git@github.com:${ORG}/${REPO}
+    git clone https://github.com/${ORG}/${REPO}
 fi
 
 DATETIME=`date +"%Y%m%d%H%M%S"`
