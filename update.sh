@@ -7,6 +7,9 @@
 #
 #          12.04    14.04  14.10 
 set -e  # Abort if any command fails
+UPDT_PATH="`dirname \"$0\"`"
+UPDT_PATH="`( cd \"$UPDT_PATH\" && pwd )`"
+cd $UPDT_PATH
 DIST_LIST="precise trusty utopic"
 ORG=leanprover
 REPO=lean
@@ -14,16 +17,15 @@ URGENCY=medium
 AUTHOR_NAME="Leonardo de Moura"
 AUTHOR_EMAIL="leonardo@microsoft.com"
 
-if [ ! -d $REPO ] ; then
-    git clone https://github.com/${ORG}/${REPO}
-fi
+rm -r -f lean*
+git clone https://github.com/${ORG}/${REPO}
 
 DATETIME=`date +"%Y%m%d%H%M%S"`
 DATE_STRING=`date -R`
 
 for DIST in ${DIST_LIST}
 do
-    VERSION=`./get_version.sh ${REPO} ${DATETIME} ${DIST}`
+    VERSION=`$UPDT_PATH/get_version.sh ${REPO} ${DATETIME} ${DIST}`
     cp debian/changelog.template                               debian/changelog
     sed -i "s/##REPO##/${REPO}/g"                              debian/changelog
     sed -i "s/##VERSION##/${VERSION}/g"                        debian/changelog
@@ -36,7 +38,7 @@ do
     cp -r debian ${REPO}/debian
     tar -acf ${REPO}_${VERSION}.orig.tar.gz --exclude ${REPO}/.git ${REPO} 
     cd ${REPO} 
-    debuild -S -sa
+    debuild -S -sa 
     cd .. 
     dput -f ppa:${ORG}/${REPO} ${REPO}_${VERSION}_source.changes
     rm -- ${REPO}_*
