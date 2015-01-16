@@ -6,6 +6,7 @@
 # Author: Soonho Kong
 #
 #          12.04    14.04  14.10 
+set -e  # Abort if any command fails
 DIST_LIST="precise trusty utopic"
 ORG=leanprover
 REPO=lean
