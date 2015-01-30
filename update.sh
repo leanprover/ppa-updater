@@ -13,12 +13,21 @@ cd $UPDT_PATH
 DIST_LIST="precise trusty utopic"
 ORG=leanprover
 REPO=lean
+DEPS_REPO=emacs-dependencies
 URGENCY=medium
 AUTHOR_NAME="Leonardo de Moura"
 AUTHOR_EMAIL="leonardo@microsoft.com"
 
 rm -r -f lean*
+rm -r -f emacs-dependencies*
 git clone https://github.com/${ORG}/${REPO}
+git clone https://github.com/${ORG}/${DEPS_REPO}
+# Copy contents of emacs-dependencies repository to main src/emacs/dependencies 
+# in the main repository
+mkdir -p ${REPO}/src/emacs/dependencies 
+cp -R ${DEPS_REPO}/* ${REPO}/src/emacs/dependencies 
+rm -r -f ${REPO}/src/emacs/dependencies/.git
+rm -r -f ${REPO}/src/emacs/dependencies/README.md
 
 DATETIME=`date +"%Y%m%d%H%M%S"`
 DATE_STRING=`date -R`
