@@ -35,6 +35,7 @@ How to install Lean using PPA
 -----------------------------
 
 ```bash
+sudo apt-get install python-software-properties # for add-apt-repository 
 sudo add-apt-repository ppa:leanprover/lean
 sudo apt-get update
 sudo apt-get install lean
