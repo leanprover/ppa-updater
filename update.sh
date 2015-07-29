@@ -10,7 +10,7 @@ set -e  # Abort if any command fails
 UPDT_PATH="`dirname \"$0\"`"
 UPDT_PATH="`( cd \"$UPDT_PATH\" && pwd )`"
 cd $UPDT_PATH
-DIST_LIST="precise trusty utopic"
+DIST_LIST="precise trusty vivid"
 ORG=leanprover
 REPO=lean
 DEPS_REPO=emacs-dependencies
