@@ -43,3 +43,8 @@ sudo apt-get install lean
 
 Once install Lean via PPA, you can use the standard `apt-get upgrade`
 to get the latest version of Lean.
+
+Status
+------
+
+ - [Soonho Kong](https://www.cs.cmu.edu/~soonhok) is running the `update.sh` script on a CMU Linux machine daily.
