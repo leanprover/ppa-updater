@@ -36,6 +36,13 @@ git reset --hard origin/master --quiet
 git rev-parse HEAD > CURRENT_HASH
 cd ..
 
+# Build and Test Lean (if it fails, it stops here)
+mkdir -p ${REPO}/build
+cd ${REPO}/build
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DTCMALLOC=OFF ../src -G Ninja && ninja && ctest && ninja clean && ninja clean-olean
+cd -
+rm -rf ${REPO}/build
+
 # Only run the script if there is an update
 if ! cmp ${REPO}/PREVIOUS_HASH ${REPO}/CURRENT_HASH >/dev/null 2>&1
 then
@@ -72,6 +79,7 @@ if [[ $DOIT == TRUE ]] ; then
         sed -i "s/##AUTHOR_NAME##/${AUTHOR_NAME}/g"                debian/changelog
         sed -i "s/##AUTHOR_EMAIL##/${AUTHOR_EMAIL}/g"              debian/changelog
         sed -i "s/##DATE_STRING##/${DATE_STRING}/g"                debian/changelog
+        rm -rf ${REPO}/debian
         cp -r debian ${REPO}/debian
         tar -acf ${REPO}_${VERSION}.orig.tar.gz --exclude ${REPO}/.git ${REPO}
         cd ${REPO}
