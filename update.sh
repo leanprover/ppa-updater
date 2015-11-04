@@ -5,20 +5,20 @@
 #
 # Author: Soonho Kong
 #
-#          12.04    14.04  15.04
 set -e  # Abort if any command fails
 UPDT_PATH="`dirname \"$0\"`"
 UPDT_PATH="`( cd \"$UPDT_PATH\" && pwd )`"
 cd $UPDT_PATH
-DIST_LIST="precise trusty vivid"
+#          12.04   14.04  15.04 15.10
+DIST_LIST="precise trusty vivid wily"
 ORG=leanprover
 REPO=lean
 DEPS_REPO=emacs-dependencies
 GIT_REMOTE_REPO=https://github.com/${ORG}/${REPO}
 GIT_REMOTE_DEPS_REPO=https://github.com/${ORG}/${DEPS_REPO}
 URGENCY=medium
-AUTHOR_NAME="Leonardo de Moura"
-AUTHOR_EMAIL="leonardo@microsoft.com"
+AUTHOR_NAME="Soonho Kong"
+AUTHOR_EMAIL="soonhok@cs.cmu.edu"
 
 # Check out lean if it's not here and update PREVIOUS_HASH
 if [ ! -d ./${REPO} ] ; then
@@ -39,7 +39,7 @@ cd ..
 # Build and Test Lean (if it fails, it stops here)
 mkdir -p ${REPO}/build
 cd ${REPO}/build
-cmake -DCMAKE_BUILD_TYPE=RELEASE -DTCMALLOC=OFF ../src -G Ninja && ninja && ctest && ninja clean && ninja clean-olean
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DTCMALLOC=OFF ../src -G Ninja && ninja && ctest -j 8 && ninja clean && ninja clean-olean
 cd -
 rm -rf ${REPO}/build
 

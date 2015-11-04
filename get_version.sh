@@ -42,6 +42,8 @@ elif [[ ${DIST} == trusty ]] ; then
     DIST_VER=14.04
 elif [[ ${DIST} == vivid ]] ; then
     DIST_VER=15.04
+elif [[ ${DIST} == wily ]] ; then
+    DIST_VER=15.10
 else 
     usage;
     echo "Wrong distro name ${DIST}: we support 'precise', 'trusty', and 'vivid'"
