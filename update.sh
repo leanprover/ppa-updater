@@ -9,8 +9,8 @@ set -e  # Abort if any command fails
 UPDT_PATH="`dirname \"$0\"`"
 UPDT_PATH="`( cd \"$UPDT_PATH\" && pwd )`"
 cd $UPDT_PATH
-#          12.04   14.04  15.04 15.10
-DIST_LIST="precise trusty vivid wily"
+#          12.04   14.04  15.10 16.04
+DIST_LIST="precise trusty wily  xenial"
 ORG=leanprover
 REPO=lean
 DEPS_REPO=emacs-dependencies
